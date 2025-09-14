@@ -1,0 +1,25 @@
+name: Web CI
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - com
+
+jobs:
+  build:
+    name: Build Web Page
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js 24.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24.x
+        cache: 'npm'
+    - run: cd com
+    - run: npm install
+    - run: npm run check
+    - run: npm run build
