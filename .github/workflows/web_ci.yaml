@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - com
+      - com/**
 
 jobs:
   build:
