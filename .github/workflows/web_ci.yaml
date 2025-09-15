@@ -19,7 +19,9 @@ jobs:
       working-directory: ./com
       with:
         node-version: 24.x
+        node-version-file: ./com/package.json
         cache: 'npm'
+        cache-dependency-path: ./com/package-lock.json
     - name: Build
       working-directory: ./com
       run: |-
