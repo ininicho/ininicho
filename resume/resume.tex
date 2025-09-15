@@ -1,0 +1,39 @@
+%! TeX program = lualatex
+\documentclass[11pt]{article}
+
+\usepackage{./components/commonheader}
+
+\begin{document}
+
+\subimport{./components/}{header.tex}
+
+\resumesection{Education}
+\subimport{./components/education}{waterloo.tex}
+
+\resumesection{Experience}
+\subimport{./components/experiences}{ibm.tex}
+\subimport{./components/experiences}{manulife.tex}
+\subimport{./components/experiences}{rhetoricon.tex}
+\subimport{./components/experiences}{state_street.tex}
+\subimport{./components/experiences/}{farmlink.tex}
+% \subimport{./components/experiences}{paramount.tex}
+
+\resumesection{Skills}
+\subimport{./components/skills}{w25.tex}
+
+% \resumesection{Projects}
+% \subimport{./components/projects}{f24.tex}
+% \subimport{./components/projects}{email-pipeline.tex}
+% \subimport{./components/projects}{dfs.tex}
+% \subimport{./components/projects}{binary_classifier.tex}
+% \subimport{./components/projects}{spotify.tex}
+% \subimport{./components/projects}{compiler.tex}
+% \subimport{./components/projects}{biquadris.tex}
+% \subimport{./components/projects}{tracenext.tex}
+% \subimport{./components/projects}{maze_solver.tex}
+
+% \resumesection{Achievements}
+% \subimport{./components/awards/}{awards.tex}
+
+
+\end{document}

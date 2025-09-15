@@ -1,0 +1,29 @@
+name: Resume
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - resume/**
+
+jobs:
+  deploy:
+    name: Publish Resume
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v5
+    - name: Compile
+      uses: xu-cheng/latex-action@v4
+      with:
+        root_file: resume.tex
+        working_directory: ./resume
+    - name: Deploy
+      uses: cloudflare/wrangler-action@v3
+      with:
+        workingDirectory: ./resume
+        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        command: r2 object put public/resume.pdf --file=resume.pdf
+
