@@ -32,4 +32,4 @@ jobs:
         workingDirectory: ./com
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        command: pages deploy ./.svelte-kit/output/client --project-name=ininicho
+        command: pages deploy
