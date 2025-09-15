@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - stage
     paths:
       - com/**
 
@@ -32,4 +33,4 @@ jobs:
         workingDirectory: ./com
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        command: pages deploy
+        command: pages deploy --branch ${{ github.ref_name }}
