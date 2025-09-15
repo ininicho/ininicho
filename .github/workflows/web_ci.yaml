@@ -13,11 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js 24.x
-      uses: actions/setup-node@v4
+    - uses: actions/checkout@v5
+    - name: Setup Node
+      uses: actions/setup-node@v5
       with:
-        node-version: 24.x
         node-version-file: ./com/package.json
         cache: 'npm'
         cache-dependency-path: ./com/package-lock.json
