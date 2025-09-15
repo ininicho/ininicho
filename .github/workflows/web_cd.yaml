@@ -1,0 +1,35 @@
+name: Web CD
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - com/**
+
+jobs:
+  deploy:
+    name: Cloudflare Pages Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v5
+    - name: Setup Node
+      uses: actions/setup-node@v5
+      with:
+        node-version-file: ./com/package.json
+        cache: 'npm'
+        cache-dependency-path: ./com/package-lock.json
+    - name: Build
+      working-directory: ./com
+      run: |-
+        npm install
+        npm run check
+        npm run build
+    - name: Deploy
+      uses: cloudflare/wrangler-action@v3
+      with:
+        workingDirectory: ./com
+        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        command: pages deploy ./.svelte-kit/output/client --project-name=ininicho
