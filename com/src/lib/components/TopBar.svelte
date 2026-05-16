@@ -117,7 +117,7 @@
   .nav-link {
     color: var(--color-ink-2);
     text-decoration: none;
-    transition: text-underline-offset 120ms ease;
+    transition: color 120ms ease;
   }
 
   .nav-link:hover {
@@ -150,7 +150,7 @@
   /* Responsive */
   @media (max-width: 767px) {
     .topbar-inner {
-      grid-template-columns: 1fr auto auto;
+      grid-template-columns: 1fr auto;
       padding: 20px 40px;
       gap: 16px;
     }
@@ -165,6 +165,11 @@
 
     .menu-toggle {
       display: block;
+      grid-column: 1;
+    }
+
+    .right-slot {
+      grid-column: 2;
     }
 
     .mobile-nav {
