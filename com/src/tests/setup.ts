@@ -1,1 +1,2 @@
-import '@testing-library/jest-dom';
+// Setup file for node environment
+// Testing library jest-dom is optional for unit tests
