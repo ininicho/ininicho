@@ -1,3 +1,5 @@
+// Separate from vite.config.ts — Vitest cannot load the sveltekit() and
+// tailwindcss() plugins on Node 18 (they pull in undici which needs Node 20+).
 import { defineConfig } from 'vitest/config';
 import path from 'path';
 

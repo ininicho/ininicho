@@ -65,7 +65,7 @@ export const IDENTITY: Identity = {
   role: 'Associate DevOps Engineer · IBM',
   org: 'IBM Payments Center',
   location: 'Toronto, ON',
-  email: 'nsuprapt@uwaterloo.ca',
+  email: 'nsuprapto@icloud.com',
   github: 'github.com/ininicho',
   linkedin: 'in/nicholaus-suprapto',
   updated: 'May 2026',
