@@ -57,7 +57,7 @@
     justify-content: space-between;
     font-family: var(--font-mono);
     font-size: 11px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     color: var(--color-ink-2);
   }
 </style>
