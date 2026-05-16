@@ -255,3 +255,27 @@ export const SITE_META: SiteMeta = {
   photoCount: 52,
   photosSince: 2023,
 };
+
+// ── Page copy ─────────────────────────────────────────────────────────────────
+// Edit these strings to update page text without touching .svelte files.
+
+export type Copy = {
+  heroTagline: string;
+  heroNow: string;
+  aboutPrimary: string;
+  aboutSecondary: string;
+  photographyIntro: string;
+  contactStatement: string;
+};
+
+export const COPY: Copy = {
+  heroTagline: 'Software engineer. Payments platforms.',
+  heroNow: 'Payments Canada · RTR',
+  aboutPrimary:
+    'Waterloo CS grad, now at the IBM Payments Center. I came up through cloud-engineering co-ops — State Street, Manulife, then back to IBM full-time — and ended up specialising in the platform layer for high-availability payment infrastructure.',
+  aboutSecondary:
+    "Outside of work I've started taking photographs — mostly walking around Toronto. This site is half CV, half slowly-growing gallery.",
+  photographyIntro:
+    'A working selection. Mostly 35mm, mostly Toronto, occasionally further. Updated when I find one I like.',
+  contactStatement: 'The fastest way is email',
+};

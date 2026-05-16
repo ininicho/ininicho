@@ -7,7 +7,7 @@
   import Photo from '$lib/components/Photo.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import { fadeUp } from '$lib/actions/fadeUp';
-  import { IDENTITY, PROJECTS, PHOTOS, SITE_META } from '$lib/content';
+  import { IDENTITY, PROJECTS, PHOTOS, SITE_META, COPY } from '$lib/content';
 
   const previewPhotos = PHOTOS.slice(0, 4);
 </script>
@@ -33,13 +33,13 @@
     <div>
       <h1 class="hero-h1">
         <span class="hero-name">{IDENTITY.name}.</span><br />
-        Software engineer. Payments platforms.
+        {COPY.heroTagline}
         <span class="hero-accent">Toronto.</span>
       </h1>
       <div class="hero-meta">
         <MetaField label="Role" value={IDENTITY.role.split(' · ')[0]} />
         <MetaField label="Organization" value={IDENTITY.org} />
-        <MetaField label="Now" value="Payments Canada · RTR" />
+        <MetaField label="Now" value={COPY.heroNow} />
         <MetaField label="Based" value={IDENTITY.location} />
       </div>
     </div>
@@ -53,15 +53,8 @@
   <Section num="01" label="About">
     <div class="about-grid">
       <div>
-        <p class="about-primary">
-          Waterloo CS grad, now at the IBM Payments Center. I came up through cloud-engineering
-          co-ops — State Street, Manulife, then back to IBM full-time — and ended up specialising
-          in the platform layer for high-availability payment infrastructure.
-        </p>
-        <p class="about-secondary">
-          Outside of work I've started taking photographs — mostly walking around Toronto. This
-          site is half CV, half slowly-growing gallery.
-        </p>
+        <p class="about-primary">{COPY.aboutPrimary}</p>
+        <p class="about-secondary">{COPY.aboutSecondary}</p>
       </div>
       <Photo photo={{ id: '000', caption: 'Portrait · placeholder', place: '', date: '', ratio: '4/5', tags: [] }} />
     </div>
@@ -81,10 +74,7 @@
 <div use:fadeUp>
   <Section num="03" label="Photography" topPad="120px">
     <div class="photo-intro">
-      <p class="photo-desc">
-        A working selection. Mostly 35mm, mostly Toronto, occasionally further. Updated when I
-        find one I like.
-      </p>
+      <p class="photo-desc">{COPY.photographyIntro}</p>
       <a href="/photography" class="photo-link">
         view all ({SITE_META.photoCount}) →
       </a>
@@ -103,7 +93,7 @@
     <div class="contact-grid">
       <div>
         <p class="contact-statement">
-          The fastest way is email<span class="accent">.</span>
+          {COPY.contactStatement}<span class="accent">.</span>
         </p>
         <a href="mailto:{IDENTITY.email}" class="contact-btn">
           {IDENTITY.email} ↗

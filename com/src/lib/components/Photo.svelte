@@ -10,7 +10,8 @@
     '#b8c0c8', '#c8b8b8', '#bec8b8', '#c8c4b8',
   ];
 
-  const swatchColor = SWATCHES[(parseInt(photo.id, 10) - 1) % SWATCHES.length];
+  const idx = parseInt(photo.id, 10);
+  const swatchColor = SWATCHES[Math.abs(idx) % SWATCHES.length];
 </script>
 
 <figure class="photo-figure">
