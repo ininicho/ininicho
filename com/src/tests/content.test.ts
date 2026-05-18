@@ -79,8 +79,7 @@ describe('PHOTOS', () => {
 });
 
 describe('SITE_META', () => {
-  it('has photoCount and version', () => {
-    expect(SITE_META.photoCount).toBeGreaterThan(0);
+  it('has version and updatedLabel', () => {
     expect(SITE_META.version).toBeTruthy();
     expect(SITE_META.updatedLabel).toBeTruthy();
   });

@@ -276,9 +276,7 @@
     margin: 32px 64px 0;
   }
 
-  .grid-gutter {
-    /* spacer in grid */
-  }
+  .grid-gutter { display: block; }
 
   @media (max-width: 479px) {
     .page-title {

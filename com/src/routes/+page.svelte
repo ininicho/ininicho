@@ -79,7 +79,7 @@
     <div class="photo-intro">
       <p class="photo-desc">{COPY.photographyIntro}</p>
       <a href="/photography" class="photo-link">
-        view all ({SITE_META.photoCount}) →
+        view all →
       </a>
     </div>
     <div class="photo-grid" style="grid-template-columns: repeat({data.pinnedPhotos.length || 1}, 1fr);">
@@ -121,21 +121,6 @@
 <Footer />
 
 <style>
-  /* Status dot */
-  .status {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 99px;
-    background: #3a8a5a;
-    display: inline-block;
-    flex-shrink: 0;
-  }
-
   /* Hero */
   .hero {
     padding: 160px 64px 140px;

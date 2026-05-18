@@ -1,5 +1,6 @@
 // src/routes/photography/+page.ts
 import type { PageLoad } from './$types';
+import type { Photo } from '$lib/content';
 
 const MANIFEST_URL = 'https://public.ininicho.com/gallery/manifest.json';
 
@@ -15,9 +16,9 @@ export const load: PageLoad = async ({ fetch }) => {
   try {
     const res = await fetch(MANIFEST_URL);
     if (!res.ok) return { photos: [] };
-    const data = await res.json();
+    const data = await res.json() as { photos?: Photo[] };
     const photos = (data.photos ?? []).slice();
-    photos.sort((a: { date: string }, b: { date: string }) => dateKey(b.date) - dateKey(a.date));
+    photos.sort((a, b) => dateKey(b.date) - dateKey(a.date));
     return { photos };
   } catch {
     return { photos: [] };
