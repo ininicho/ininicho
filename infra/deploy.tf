@@ -74,7 +74,7 @@ resource "cloudflare_r2_bucket_cors" "public" {
     {
       allowed = {
         methods = ["GET", "HEAD"]
-        origins = ["https://ininicho.com", "https://dev.ininicho.com", "http://localhost:5173"]
+        origins = ["https://ininicho.com", "https://*.ininicho-bsr.pages.dev", "http://localhost:5173"]
         headers = ["*"]
       }
       expose_headers  = ["ETag", "Content-Type"]
