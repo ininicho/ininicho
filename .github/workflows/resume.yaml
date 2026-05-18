@@ -27,5 +27,12 @@ jobs:
         workingDirectory: ./resume
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        command: r2 object put public/resume.pdf --file=resume.pdf
+        command: r2 object put public/resume.pdf --file=resume.pdf --cache-control "no-cache, no-store"
+
+    - name: Purge CDN cache
+      run: |
+        curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+          -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          --data '{"files":["https://public.ininicho.com/resume.pdf"]}' | jq .success
 
