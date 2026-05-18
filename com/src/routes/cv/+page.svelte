@@ -14,7 +14,7 @@
 <!-- TOP BAR -->
 <TopBar active="cv">
   {#snippet right()}
-    <a href="/resume.pdf" download class="dl-btn">Download · pdf ↓</a>
+    <a href="https://public.ininicho.com/resume.pdf" target="_blank" rel="noopener" class="dl-btn">Download · pdf ↓</a>
   {/snippet}
 </TopBar>
 
@@ -41,8 +41,8 @@
 <section class="cv-section" use:fadeUp>
   <span class="cv-section-num">01 / experience</span>
   <div class="experience-list">
-    {#each EXPERIENCE as exp}
-      <article class="exp-row">
+    {#each EXPERIENCE as exp, i}
+      <article class="exp-row" id="exp-{i}">
         <div class="exp-date">{exp.yr}</div>
         <div class="exp-body">
           <h3 class="exp-role">{exp.role}</h3>
@@ -109,7 +109,7 @@
       References available on request. Prefer to print this? The PDF is set on a single page
       in the same type.
     </p>
-    <a href="/resume.pdf" download class="dl-btn dl-btn-large">Download résumé · pdf ↓</a>
+    <a href="https://public.ininicho.com/resume.pdf" target="_blank" rel="noopener" class="dl-btn dl-btn-large">Download résumé · pdf ↓</a>
   </div>
 </section>
 
@@ -208,6 +208,7 @@
     grid-template-columns: 180px 1fr;
     gap: 32px;
     align-items: baseline;
+    scroll-margin-top: 128px;
   }
   .exp-date {
     font-family: var(--font-mono);

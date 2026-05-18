@@ -14,11 +14,29 @@
 
   let activeFilter = $state<string>('All');
   let visible = $state(PAGE_SIZE);
+  let colCount = $state(3);
+
+  $effect(() => {
+    const sm = window.matchMedia('(max-width: 479px)');
+    const md = window.matchMedia('(max-width: 767px)');
+    function update() {
+      if (sm.matches) colCount = 1;
+      else if (md.matches) colCount = 2;
+      else colCount = 3;
+    }
+    update();
+    sm.addEventListener('change', update);
+    md.addEventListener('change', update);
+    return () => {
+      sm.removeEventListener('change', update);
+      md.removeEventListener('change', update);
+    };
+  });
 
   const filtered = $derived(filterPhotos(data.photos, activeFilter));
   const paginated = $derived(paginatePhotos(filtered, visible));
-  const columns = $derived(photoColumns(paginated, 3));
-  const previewColumns = $derived(photoColumns(data.photos.slice(PAGE_SIZE, PAGE_SIZE + 3), 3));
+  const columns = $derived(photoColumns(paginated, colCount));
+  const previewColumns = $derived(photoColumns(data.photos.slice(PAGE_SIZE, PAGE_SIZE + colCount), colCount));
   const photoCount = data.photos.length
 
   function setFilter(f: string) {
@@ -68,7 +86,7 @@
 <!-- PHOTO GRID -->
 <section class="grid-section">
   <div class="grid-gutter" aria-hidden="true"></div>
-  <div class="masonry">
+  <div class="masonry" style="grid-template-columns: repeat({colCount}, 1fr);">
     {#each columns as col}
       <div class="masonry-col">
         {#each col as photo}
@@ -98,7 +116,7 @@
     <!-- Faded preview of next batch -->
     {#if previewColumns.some((col) => col.length > 0)}
       <div class="grid-gutter" aria-hidden="true"></div>
-      <div class="masonry preview-fade">
+      <div class="masonry preview-fade" style="grid-template-columns: repeat({colCount}, 1fr);">
         {#each previewColumns as col}
           <div class="masonry-col">
             {#each col as photo}
@@ -192,8 +210,8 @@
   }
   .masonry {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+    /* grid-template-columns set via inline style (reactive colCount) */
   }
   .masonry-col {
     display: flex;
@@ -262,6 +280,21 @@
     /* spacer in grid */
   }
 
+  @media (max-width: 479px) {
+    .page-title {
+      padding: 48px 24px 32px;
+    }
+    .grid-section {
+      padding: 0 24px 40px;
+    }
+    .load-more-section {
+      padding: 32px 24px 0;
+    }
+    .rule {
+      margin: 32px 24px 0;
+    }
+  }
+
   /* Responsive */
   @media (max-width: 1023px) {
     .page-title {
@@ -302,7 +335,6 @@
       padding: 0 40px 40px;
     }
     .masonry {
-      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
     .load-more-section {

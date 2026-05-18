@@ -6,7 +6,12 @@
   let { project, last = false }: { project: Project; last?: boolean } = $props();
 </script>
 
-<article class="row" class:last>
+<svelte:element
+  this={project.href ? 'a' : 'article'}
+  href={project.href ?? undefined}
+  class="row"
+  class:last
+>
   <span class="row-num">{project.no}</span>
 
   <div class="row-title-col">
@@ -21,12 +26,14 @@
       <Tag label={tag} />
     {/each}
   </div>
-</article>
+</svelte:element>
 
 <style>
   .row {
     padding: 32px 0;
     border-top: 1px solid var(--color-rule);
+    text-decoration: none;
+    color: inherit;
     display: grid;
     grid-template-columns: 60px 1fr 1fr auto;
     gap: 32px;

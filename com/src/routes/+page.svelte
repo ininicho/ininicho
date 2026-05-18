@@ -7,9 +7,10 @@
   import Photo from '$lib/components/Photo.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import { fadeUp } from '$lib/actions/fadeUp';
-  import { IDENTITY, PROJECTS, PHOTOS, SITE_META, COPY } from '$lib/content';
+  import { IDENTITY, PROJECTS, SITE_META, COPY } from '$lib/content';
+  import type { PageData } from './$types';
 
-  const previewPhotos = PHOTOS.slice(0, 4);
+  let { data }: { data: PageData } = $props();
 </script>
 
 <svelte:head>
@@ -81,8 +82,8 @@
         view all ({SITE_META.photoCount}) →
       </a>
     </div>
-    <div class="photo-grid">
-      {#each previewPhotos as photo}
+    <div class="photo-grid" style="grid-template-columns: repeat({data.pinnedPhotos.length || 1}, 1fr);">
+      {#each data.pinnedPhotos as photo}
         <Photo {photo} />
       {/each}
     </div>
@@ -107,7 +108,7 @@
         <dt>LinkedIn</dt>
         <dd><a href="https://linkedin.com/{IDENTITY.linkedin}" target="_blank" rel="noopener">{IDENTITY.linkedin}</a></dd>
         <dt>Resume</dt>
-        <dd><a href="/resume.pdf" download>resume.pdf ↓</a></dd>
+        <dd><a href="https://public.ininicho.com/resume.pdf" target="_blank" rel="noopener">resume.pdf ↓</a></dd>
         <dt>Location</dt>
         <dd>{IDENTITY.location}</dd>
       </dl>
@@ -231,7 +232,7 @@
   }
   .photo-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-columns set via inline style (driven by pinned count) */
     gap: 16px;
   }
 
@@ -342,7 +343,7 @@
       gap: 32px;
     }
     .photo-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr !important;
     }
     .photo-intro {
       flex-direction: column;
