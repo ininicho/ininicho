@@ -65,3 +65,20 @@ resource "cloudflare_r2_custom_domain" "public" {
   domain      = "public.ininicho.com"
   zone_id     = var.cloudflare_zone_id
 }
+
+resource "cloudflare_r2_bucket_cors" "public" {
+  account_id  = var.cloudflare_account_id
+  bucket_name = cloudflare_r2_bucket.public.name
+
+  rules = [
+    {
+      allowed = {
+        methods = ["GET", "HEAD"]
+        origins = ["https://ininicho.com", "https://*.ininicho-bsr.pages.dev", "http://localhost:5173"]
+        headers = ["*"]
+      }
+      expose_headers  = ["ETag", "Content-Type"]
+      max_age_seconds = 3600
+    }
+  ]
+}

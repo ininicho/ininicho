@@ -1,23 +1,42 @@
 \textbf{IBM \hfill Toronto, ON}\par
-\textit{Cloud Engineer Part-Time - IBM Payments Center} \hfill Jan 2025 - Apr 2025
+\textit{DevOps Engineer - Real-Time Rail Payments System} \hfill Aug 2025 - Present
+\begin{itemize}
+  \item Managed ArgoCD / OpenShift GitOps across 12 clusters with 2 management instances, enabling GitOps-driven delivery for C\&S and Exchange workloads across 16 environments
+  \item Standardized and maintained CI/CD pipelines across 16 environments, including snapshot and release pipelines for C\&S teams and per-environment CD pipelines for both C\&S and Exchange
+  \item Migrated and rebuilt CloudBees CI Jenkins from IBM Cloud to on-premises OpenShift using CasC, deploying in an active-passive configuration across 2 management clusters
+  \item Deployed and configured Kong Gateway (Control Plane and Data Plane) on OpenShift; built a custom plugin image pipeline; implemented Kong Deck config-as-code for version-controlled API infrastructure
+  \item Deployed ActiveMQ (AMQ) Broker via OpenShift operators, configuring Queue Federation and Mirroring across pre-production and production for cross-site message persistence
+  \item Installed and configured EDB PostgreSQL with synchronous commits between datacenters to achieve RPO=0 across production environments
+  \item Engineered a Zero-Trust network model using OpenShift Network Policies for microsegmentation and Istio Service Mesh to enforce mTLS across all in-mesh microservices
+  \item Installed HashiCorp Vault operator across all clusters, configuring Kubernetes auth methods and managing 17 namespaces with automated certificate lifecycle management via the PKI engine
+  \item Deployed F5 CIS operators to provision Virtual IPs for platform components, collaborating with the network team to define and validate network flows
+  \item Supported resiliency and performance testing including 300 TPS load tests and 36-hour soak tests, serving as the platform layer interface between development, QA, and infrastructure teams
+\end{itemize}
+\vspace{0.1cm}
+
+\textit{Platform Engineer - IBM Payments Center} \hfill Jul 2025 - Aug 2025
+\begin{itemize}
+  \item Led a compliance-driven decommission of the Wires Services Jenkins instance, migrating CI/CD infrastructure to IBM One Pipeline (1PL) — a Tekton-based framework — across development, platform, QA, and operations teams
+  \item Migrated 40+ Jenkins pipelines to IBM One Pipeline, covering PR, CI, and CD pipelines across Stage, QA, and Production environments
+  \item Reduced pipeline execution time by up to 3x by enabling concurrent stages for code scanning, vulnerability checks, and compliance, and optimizing base image sizes
+  \item Connected IBM Cloud CD instances to AWS accounts to support deployment of CloudFormation infrastructure and Lambda-based microservices
+\end{itemize}
+\vspace{0.1cm} \par
+
+\textit{Platform Engineer Part-Time - IBM Payments Center} \hfill Jan 2025 - Apr 2025
 
 \begin{itemize}
-  \item Migrated 800+ Docker images from JFrog to IBM Cloud Container Registry, streamlining image management
+  \item Migrated 800+ platform base images from JFrog to IBM Cloud Container Registry, supporting the platform team's AMI build pipeline
   \item Provisioned EKS add-ons using Terraform to enhance existing Kubernetes clusters
   \item Developed a CloudWatch-based log monitoring system to detect critical patterns and trigger Instana alerts
   \item Enabled ELB access logs and implemented S3 cross-region replication for disaster recovery and compliance
 \end{itemize}
 \vspace{0.1cm} \par
 
-\textit{Cloud Engineer Intern - IBM Payments Center} \hfill May 2024 - Aug 2024
+\textit{Platform Engineer Intern - IBM Payments Center} \hfill May 2024 - Sep 2024
 
 \begin{itemize}
-  %\item Designed comprehensive Terraform ecosystems for IBM Cloud services to automate deployments
-  %\item Automated CICD pipeline deployments for multiple teams, reducing manual effort by 80\%
-  %\item Implemented a solution to use IBM COS in managing Terraform state, improving security and compliance
-  %\item Designed and built CICD pipelines for Terraform projects in IBM Cloud
-  %\item Migrated 65 Terraform repositories from Jenkins to IBM Cloud, enabling faster deployments for the team
-  \item Automated IBM Cloud Toolchain provisioning with Terraform, reducing setup time by 80\%
+  \item Automated IBM Cloud Toolchain provisioning with Terraform, reducing setup time by 80\% — automation later reused as the foundation for the Wires Services CI/CD migration
   \item Developed CI/CD pipelines for Terraform projects using IBM Toolchain, boosting reliability and productivity
   \item Migrated Terraform CI/CD workflows from Jenkins to IBM Toolchain, reducing deployment times by over 20\%
   \item Implemented SPbD by integrating Mend (WhiteSource) for automated code compliance and security checks

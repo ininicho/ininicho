@@ -1,2 +1,40 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+@theme {
+  --color-bg: #fbf7ef;
+  --color-paper: #ffffff;
+  --color-ink: #191917;
+  --color-ink-2: #6b675f;
+  --color-ink-3: #a09b91;
+  --color-accent: #1f70c1;
+  --color-rule: rgba(25, 25, 23, 0.12);
+  --color-rule-soft: rgba(25, 25, 23, 0.06);
+
+  --font-sans: 'Switzer', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}

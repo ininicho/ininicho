@@ -1,0 +1,41 @@
+name: Infra CI
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - infra/**
+
+jobs:
+  terraform:
+    name: Terraform Plan
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./infra
+
+    env:
+      TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      TF_VAR_cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      TF_VAR_cloudflare_zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Write backend config
+        run: |
+          cat > backend.config << 'EOF'
+          access_key = "${{ secrets.TF_BACKEND_ACCESS_KEY }}"
+          secret_key = "${{ secrets.TF_BACKEND_SECRET_KEY }}"
+          endpoints  = { s3 = "${{ secrets.TF_BACKEND_ENDPOINT }}" }
+          EOF
+
+      - name: Terraform Init
+        run: terraform init -backend-config=backend.config
+
+      - name: Terraform Plan
+        run: terraform plan -out tfplan
