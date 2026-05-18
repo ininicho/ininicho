@@ -18,12 +18,14 @@
 
 <!-- TOP BAR -->
 <TopBar active="index">
-  {#snippet right()}
-    <span class="status">
-      <span class="status-dot" aria-hidden="true"></span>
-      Toronto · live
-    </span>
-  {/snippet}
+  <!--
+    {#snippet right()}
+      <span class="status">
+        <span class="status-dot" aria-hidden="true"></span>
+        Toronto · live
+      </span>
+    {/snippet}
+  -->
 </TopBar>
 
 <!-- HERO -->
@@ -56,7 +58,7 @@
         <p class="about-primary">{COPY.aboutPrimary}</p>
         <p class="about-secondary">{COPY.aboutSecondary}</p>
       </div>
-      <Photo photo={{ id: '000', caption: 'Portrait · placeholder', place: '', date: '', ratio: '4/5', tags: [] }} />
+      <Photo photo={{ id: '000', caption: 'Portrait', place: '', src: '/potrait.jpg', date: '2026', ratio: '4/5', tags: [] }} />
     </div>
   </Section>
 </div>

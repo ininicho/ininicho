@@ -23,7 +23,7 @@
     {/if}
   </div>
   <figcaption class="photo-caption">
-    <span>{photo.caption}</span>
+    <span>{photo.caption} · {photo.date}</span>
     <span>#{photo.id}</span>
   </figcaption>
 </figure>

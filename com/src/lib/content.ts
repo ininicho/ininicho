@@ -35,7 +35,7 @@ export type Photo = {
   caption: string;
   place: string;
   date: string;
-  ratio: '4/5' | '3/4' | '1/1' | '4/3';
+  ratio: '2/3' | '4/5' | '3/4' | '1/1' | '4/3' | '3/2';
   tags: string[];
   src?: string;   // undefined until R2 is wired; Photo.svelte shows placeholder when absent
 };
@@ -54,7 +54,6 @@ export type Identity = {
 export type SiteMeta = {
   version: string;
   updatedLabel: string;
-  photoCount: number;
   photosSince: number;
 };
 
@@ -77,16 +76,16 @@ export const PROJECTS: Project[] = [
   {
     no: '01',
     year: 'Aug 2025 — present',
-    client: 'Payments Canada · via IBM',
+    client: 'Payments Canada · IBM',
     title: 'Real-Time Rail · Platform team',
     blurb:
-      "Platform & DevOps work on Canada's first national real-time payment system. ArgoCD multi-cluster GitOps, Istio service mesh, Vault PKI, AMQ broker federation.",
-    tags: ['OpenShift', 'ArgoCD', 'Istio', 'Vault', 'F5'],
+      "Platform & DevOps work on Canada's first national real-time payment system. ArgoCD multi-cluster GitOps, bare metal clusters, distributed databases, self-managed tools.",
+    tags: ['OpenShift', 'ArgoCD', 'CockroachDB', 'AMQ', 'Kong'],
   },
   {
     no: '02',
     year: 'Jul — Aug 2025',
-    client: 'IBM Wires Services · via Expertus',
+    client: 'IBM Payments Center',
     title: 'Release management remediation',
     blurb:
       'Re-designed the release management strategy for the Wires Services team — safer rollbacks, fewer surprises during deploys.',
@@ -223,28 +222,28 @@ export const SKILLS: SkillGroup[] = [
 // Add src: 'https://<r2-bucket>/<key>' once R2 is wired.
 
 export const PHOTOS: Photo[] = [
-  { id: '001', caption: 'Kensington · 05·25', place: 'Kensington', date: '05·25', ratio: '4/5', tags: ['Toronto'] },
-  { id: '002', caption: 'Spadina · 04·25', place: 'Spadina', date: '04·25', ratio: '3/4', tags: ['Toronto'] },
-  { id: '003', caption: 'Union · 04·25', place: 'Union', date: '04·25', ratio: '1/1', tags: ['Toronto'] },
-  { id: '004', caption: 'Don Valley · 03·25', place: 'Don Valley', date: '03·25', ratio: '4/3', tags: ['Toronto'] },
-  { id: '005', caption: 'Bellwoods · 03·25', place: 'Bellwoods', date: '03·25', ratio: '3/4', tags: ['Toronto'] },
-  { id: '006', caption: 'Lakeshore · 02·25', place: 'Lakeshore', date: '02·25', ratio: '4/5', tags: ['Toronto'] },
-  { id: '007', caption: 'Annex · 01·25', place: 'Annex', date: '01·25', ratio: '1/1', tags: ['Toronto'] },
-  { id: '008', caption: 'Distillery · 12·24', place: 'Distillery', date: '12·24', ratio: '3/4', tags: ['Toronto'] },
-  { id: '009', caption: 'Roncesvalles · 11·24', place: 'Roncesvalles', date: '11·24', ratio: '4/5', tags: ['Toronto'] },
-  { id: '010', caption: 'Kensington · 11·24', place: 'Kensington', date: '11·24', ratio: '4/3', tags: ['Toronto', 'Film'] },
-  { id: '011', caption: 'Spadina · 10·24', place: 'Spadina', date: '10·24', ratio: '3/4', tags: ['Toronto', 'Film'] },
-  { id: '012', caption: 'Bellwoods · 09·24', place: 'Bellwoods', date: '09·24', ratio: '4/5', tags: ['Toronto'] },
-  { id: '013', caption: 'Don Valley · 08·24', place: 'Don Valley', date: '08·24', ratio: '1/1', tags: ['Toronto'] },
-  { id: '014', caption: 'Lakeshore · 07·24', place: 'Lakeshore', date: '07·24', ratio: '4/5', tags: ['Toronto', 'Digital'] },
-  { id: '015', caption: 'Annex · 06·24', place: 'Annex', date: '06·24', ratio: '3/4', tags: ['Toronto'] },
-  { id: '016', caption: 'Union · 05·24', place: 'Union', date: '05·24', ratio: '4/3', tags: ['Toronto', 'Film'] },
-  { id: '017', caption: 'Roncesvalles · 04·24', place: 'Roncesvalles', date: '04·24', ratio: '4/5', tags: ['Toronto'] },
-  { id: '018', caption: 'Distillery · 03·24', place: 'Distillery', date: '03·24', ratio: '3/4', tags: ['Toronto'] },
-  { id: '019', caption: 'Montreal · 02·24', place: 'Montreal', date: '02·24', ratio: '4/5', tags: ['Travel'] },
-  { id: '020', caption: 'Montreal · 02·24', place: 'Montreal', date: '02·24', ratio: '3/4', tags: ['Travel'] },
-  { id: '021', caption: 'Vancouver · 01·24', place: 'Vancouver', date: '01·24', ratio: '1/1', tags: ['Travel'] },
-  { id: '022', caption: 'Vancouver · 01·24', place: 'Vancouver', date: '01·24', ratio: '4/5', tags: ['Travel', 'Film'] },
+  { id: '001', caption: 'Kensington', place: 'Kensington', date: '2026/05/25', ratio: '3/2', tags: ['Toronto'] },
+  { id: '002', caption: 'Spadina', place: 'Spadina', date: '04/25', ratio: '2/3', tags: ['Toronto'] },
+  { id: '003', caption: 'Union', place: 'Union', date: '04/25', ratio: '1/1', tags: ['Toronto'] },
+  { id: '004', caption: 'Don Valley', place: 'Don Valley', date: '03/25', ratio: '4/3', tags: ['Toronto'] },
+  { id: '005', caption: 'Bellwoods', place: 'Bellwoods', date: '03/25', ratio: '3/4', tags: ['Toronto'] },
+  { id: '006', caption: 'Lakeshore', place: 'Lakeshore', date: '02/25', ratio: '4/5', tags: ['Toronto'] },
+  { id: '007', caption: 'Annex', place: 'Annex', date: '01/25', ratio: '1/1', tags: ['Toronto'] },
+  { id: '008', caption: 'Distillery', place: 'Distillery', date: '12/24', ratio: '3/4', tags: ['Toronto'] },
+  { id: '009', caption: 'Roncesvalles', place: 'Roncesvalles', date: '11/24', ratio: '4/5', tags: ['Toronto'] },
+  { id: '010', caption: 'Kensington', place: 'Kensington', date: '11/24', ratio: '4/3', tags: ['Toronto', 'Film'] },
+  { id: '011', caption: 'Spadina', place: 'Spadina', date: '10/24', ratio: '3/4', tags: ['Toronto', 'Film'] },
+  { id: '012', caption: 'Bellwoods', place: 'Bellwoods', date: '09/24', ratio: '4/5', tags: ['Toronto'] },
+  { id: '013', caption: 'Don Valley', place: 'Don Valley', date: '08/24', ratio: '1/1', tags: ['Toronto'] },
+  { id: '014', caption: 'Lakeshore', place: 'Lakeshore', date: '07/24', ratio: '4/5', tags: ['Toronto', 'Digital'] },
+  { id: '015', caption: 'Annex', place: 'Annex', date: '06/24', ratio: '3/4', tags: ['Toronto'] },
+  { id: '016', caption: 'Union', place: 'Union', date: '05/24', ratio: '4/3', tags: ['Toronto', 'Film'] },
+  { id: '017', caption: 'Roncesvalles', place: 'Roncesvalles', date: '04/24', ratio: '4/5', tags: ['Toronto'] },
+  { id: '018', caption: 'Distillery', place: 'Distillery', date: '03/24', ratio: '3/4', tags: ['Toronto'] },
+  { id: '019', caption: 'Montreal', place: 'Montreal', date: '02/24', ratio: '4/5', tags: ['Travel'] },
+  { id: '020', caption: 'Montreal', place: 'Montreal', date: '02/24', ratio: '3/4', tags: ['Travel'] },
+  { id: '021', caption: 'Vancouver', place: 'Vancouver', date: '01/24', ratio: '1/1', tags: ['Travel'] },
+  { id: '022', caption: 'Vancouver', place: 'Vancouver', date: '01/24', ratio: '4/5', tags: ['Travel', 'Film'] },
 ];
 
 // ── Site meta ─────────────────────────────────────────────────────────────────
@@ -252,8 +251,7 @@ export const PHOTOS: Photo[] = [
 export const SITE_META: SiteMeta = {
   version: '1.0',
   updatedLabel: 'may 2026',
-  photoCount: 52,
-  photosSince: 2023,
+  photosSince: 2026,
 };
 
 // ── Page copy ─────────────────────────────────────────────────────────────────
@@ -272,7 +270,7 @@ export const COPY: Copy = {
   heroTagline: 'Software engineer. Payments platforms.',
   heroNow: 'Payments Canada · RTR',
   aboutPrimary:
-    'Waterloo CS grad, now at the IBM Payments Center. I came up through cloud-engineering co-ops — State Street, Manulife, then back to IBM full-time — and ended up specialising in the platform layer for high-availability payment infrastructure.',
+    "DevOps and Cloud Engineer at IBM who thrives where reliability meets scale. Computer Science grad from Waterloo — I build the infrastructure other engineers take for granted, and I wouldn't have it any other way.",
   aboutSecondary:
     "Outside of work I've started taking photographs — mostly walking around Toronto. This site is half CV, half slowly-growing gallery.",
   photographyIntro:

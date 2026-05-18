@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link
     href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap"

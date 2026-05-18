@@ -26,7 +26,7 @@
 <header class="topbar">
   <div class="topbar-inner">
     <!-- Left: idx label -->
-    <span class="idx-label">idx · 2026</span>
+    <span class="idx-label">NS · 2026</span>
 
     <!-- Centre: desktop nav -->
     <nav class="desktop-nav">

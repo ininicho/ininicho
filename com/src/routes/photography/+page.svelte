@@ -9,8 +9,8 @@
 
   let { data }: { data: PageData } = $props();
 
-  const FILTERS = ['All', 'Toronto', 'Travel', 'Film', 'Digital'] as const;
-  const PAGE_SIZE = 18;
+  const FILTERS = ['All', '27mm'] as const;
+  const PAGE_SIZE = 12;
 
   let activeFilter = $state<string>('All');
   let visible = $state(PAGE_SIZE);
@@ -19,6 +19,7 @@
   const paginated = $derived(paginatePhotos(filtered, visible));
   const columns = $derived(photoColumns(paginated, 3));
   const previewColumns = $derived(photoColumns(data.photos.slice(PAGE_SIZE, PAGE_SIZE + 3), 3));
+  const photoCount = data.photos.length
 
   function setFilter(f: string) {
     activeFilter = f;
@@ -37,7 +38,7 @@
 <!-- TOP BAR -->
 <TopBar active="photography">
   {#snippet right()}
-    <span>{SITE_META.photoCount} photos · since {SITE_META.photosSince}</span>
+    <span>{photoCount} photos · since {SITE_META.photosSince}</span>
   {/snippet}
 </TopBar>
 
@@ -114,7 +115,7 @@
 
 <Footer
   left="← back to index"
-  right="{SITE_META.photoCount} photos · updated {SITE_META.updatedLabel}"
+  right="{photoCount} photos · updated {SITE_META.updatedLabel}"
 />
 
 <style>
