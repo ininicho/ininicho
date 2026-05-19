@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ntfy
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: command-runner
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring

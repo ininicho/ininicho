@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sealed-secrets-version
+  namespace: kube-system
+data:
+  version: "v0.27.3"
+  install-url: "https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.27.3/controller.yaml"
