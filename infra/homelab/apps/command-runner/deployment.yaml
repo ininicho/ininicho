@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: command-runner
+  namespace: command-runner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: command-runner
+  template:
+    metadata:
+      labels:
+        app: command-runner
+    spec:
+      containers:
+        - name: command-runner
+          image: ghcr.io/ininicho/command-runner:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: COMMAND_RUNNER_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: command-runner-auth
+                  key: COMMAND_RUNNER_TOKEN
+            - name: NTFY_PUBLISH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: command-runner-auth
+                  key: NTFY_PUBLISH_TOKEN
+            - name: NTFY_URL
+              value: "http://ntfy.ntfy.svc.cluster.local"
+            - name: NTFY_COMMANDS_TOPIC
+              value: "commands"
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
