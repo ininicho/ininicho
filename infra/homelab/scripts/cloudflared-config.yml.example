@@ -1,0 +1,17 @@
+tunnel: <YOUR-TUNNEL-ID>
+credentials-file: /home/pi/.cloudflared/<YOUR-TUNNEL-ID>.json
+
+ingress:
+  - hostname: ntfy.ininicho.com
+    service: http://localhost:80
+  - hostname: pi.ininicho.com
+    service: http://localhost:80
+  - hostname: data.ininicho.com
+    service: http://localhost:80
+  - hostname: dash.ininicho.com
+    service: http://localhost:80
+  - hostname: grafana.ininicho.com
+    service: http://localhost:80
+  - hostname: argocd.ininicho.com
+    service: http://localhost:80
+  - service: http_status:404
