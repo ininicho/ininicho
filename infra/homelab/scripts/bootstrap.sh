@@ -60,7 +60,7 @@ kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/latest/
 
 # 7. Install ArgoCD
 kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --server-side --force-conflicts
 
 echo ""
 echo "=== Bootstrap complete ==="
