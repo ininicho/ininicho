@@ -1,0 +1,21 @@
+name: Homelab CD Notify
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "infra/homelab/**"
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send ntfy deployment notification
+        run: |
+          curl -s \
+            -H "Authorization: Bearer ${{ secrets.NTFY_PUBLISH_TOKEN }}" \
+            -H "Title: ✅ Homelab deployed" \
+            -H "Priority: default" \
+            -d "Changes merged to main — ArgoCD will sync within 3 minutes" \
+            "${{ secrets.NTFY_URL }}/alerts"
