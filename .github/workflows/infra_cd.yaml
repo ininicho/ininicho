@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - infra/**
+      - infra/cloudflare/**
 
 jobs:
   terraform:
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./infra
+        working-directory: ./infra/cloudflare
 
     env:
       TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
