@@ -12,9 +12,8 @@ NTFY_TOPIC = os.environ.get("NTFY_COMMANDS_TOPIC", "commands")
 NTFY_PUBLISH_TOKEN = os.environ.get("NTFY_PUBLISH_TOKEN", "")
 
 COMMANDS = {
-    "backup": ["bash", "/scripts/backup.sh"],
-    "status": None,  # handled inline
-    "list-commands": None,  # handled inline
+    "status": None,
+    "list-commands": None,
 }
 
 

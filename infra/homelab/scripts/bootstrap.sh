@@ -30,10 +30,8 @@ if ! grep -q "cgroup_enable=cpuset" "$CMDLINE"; then
   echo "cgroups enabled — reboot required before continuing"
   echo "After reboot, re-run this script with: bash bootstrap.sh --post-reboot"
   exit 0
-fi
-
-if [[ "${1:-}" != "--post-reboot" ]]; then
-  echo "Run with --post-reboot flag to continue after reboot"
+elif [[ "${1:-}" != "--post-reboot" ]]; then
+  echo "cgroups already set. Pass --post-reboot to continue with k3s installation."
   exit 0
 fi
 

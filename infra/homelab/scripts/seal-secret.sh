@@ -22,6 +22,6 @@ kubectl create secret generic "$SECRET_NAME" \
     --controller-namespace kube-system \
     --format yaml
 
-echo ""
-echo "# Pipe the above output to a file:"
-echo "# bash seal-secret.sh $NAMESPACE $SECRET_NAME ... > infra/homelab/infrastructure/secrets/$SECRET_NAME.yaml"
+echo "" >&2
+echo "# Pipe the above output to a file:" >&2
+echo "# bash seal-secret.sh $NAMESPACE $SECRET_NAME ... > infra/homelab/infrastructure/secrets/$SECRET_NAME.yaml" >&2
