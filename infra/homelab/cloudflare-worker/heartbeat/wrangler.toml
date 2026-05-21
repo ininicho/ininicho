@@ -1,7 +1,6 @@
 name = "pi-heartbeat"
 main = "src/index.js"
 compatibility_date = "2024-01-01"
-# account_id = "<your-cloudflare-account-id>"  # required for wrangler deploy
 
 [triggers]
 crons = ["*/5 * * * *"]
