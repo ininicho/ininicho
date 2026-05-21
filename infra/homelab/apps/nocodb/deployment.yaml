@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nocodb
+  namespace: nocodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nocodb
+  template:
+    metadata:
+      labels:
+        app: nocodb
+    spec:
+      containers:
+        - name: nocodb
+          image: nocodb/nocodb:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: NC_DB
+              valueFrom:
+                secretKeyRef:
+                  name: nocodb-db
+                  key: NC_DB
+          volumeMounts:
+            - name: data
+              mountPath: /usr/app/data
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: nocodb-data
