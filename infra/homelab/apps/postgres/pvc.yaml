@@ -5,6 +5,7 @@ metadata:
   namespace: postgres
 spec:
   storageClassName: seagate-local
+  volumeName: postgres-pv
   accessModes:
     - ReadWriteOnce
   resources:

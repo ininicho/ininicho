@@ -5,6 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   storageClassName: seagate-local
+  volumeName: grafana-pv
   accessModes:
     - ReadWriteOnce
   resources:

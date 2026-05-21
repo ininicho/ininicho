@@ -5,6 +5,7 @@ metadata:
   namespace: metabase
 spec:
   storageClassName: seagate-local
+  volumeName: metabase-pv
   accessModes:
     - ReadWriteOnce
   resources:

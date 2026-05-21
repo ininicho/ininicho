@@ -5,6 +5,7 @@ metadata:
   namespace: nocodb
 spec:
   storageClassName: seagate-local
+  volumeName: nocodb-pv
   accessModes:
     - ReadWriteOnce
   resources:
