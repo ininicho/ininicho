@@ -26,6 +26,8 @@ spec:
                   key: NC_DB
             - name: NODE_OPTIONS
               value: "--max-old-space-size=400"
+            - name: NC_ALLOW_LOCAL_HOOKS
+              value: "true"
           volumeMounts:
             - name: data
               mountPath: /usr/app/data
