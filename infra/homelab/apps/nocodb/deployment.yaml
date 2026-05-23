@@ -24,6 +24,8 @@ spec:
                 secretKeyRef:
                   name: nocodb-db
                   key: NC_DB
+            - name: NODE_OPTIONS
+              value: "--max-old-space-size=400"
           volumeMounts:
             - name: data
               mountPath: /usr/app/data
