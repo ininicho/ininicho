@@ -28,6 +28,8 @@ spec:
               value: "--max-old-space-size=400"
             - name: NC_ALLOW_LOCAL_HOOKS
               value: "true"
+            - name: NC_ALLOW_LOCAL_EXTERNAL_DBS
+              value: "true"
           volumeMounts:
             - name: data
               mountPath: /usr/app/data
