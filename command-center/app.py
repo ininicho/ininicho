@@ -6,7 +6,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-BEARER_TOKEN = os.environ["COMMAND_RUNNER_TOKEN"]
+BEARER_TOKEN = os.environ["COMMAND_CENTER_TOKEN"]
 NTFY_URL = os.environ.get("NTFY_URL", "http://ntfy.ntfy.svc.cluster.local")
 NTFY_TOPIC = os.environ.get("NTFY_COMMANDS_TOPIC", "commands")
 NTFY_PUBLISH_TOKEN = os.environ.get("NTFY_PUBLISH_TOKEN", "")
