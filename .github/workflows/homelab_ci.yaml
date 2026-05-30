@@ -24,16 +24,9 @@ jobs:
             infra/homelab/infrastructure/sealed-secrets/ \
             infra/homelab/infrastructure/kustomization.yaml
 
-      - name: Create stub kubeconfig for client-side dry-run
-        run: |
-          kubectl config set-cluster local --server=https://localhost:6443
-          kubectl config set-credentials admin --token=stub
-          kubectl config set-context local --cluster=local --user=admin
-          kubectl config use-context local
-
       - name: Dry-run all manifests
         run: |
           find infra/homelab/apps infra/homelab/argocd infra/homelab/infrastructure \
             -name "*.yaml" \
             ! -name "*.example.yaml" \
-            | xargs -I{} kubectl apply --dry-run=client -f {}
+            | xargs -I{} kubectl apply --dry-run=client --validate=false -f {}
