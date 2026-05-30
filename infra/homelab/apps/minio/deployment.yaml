@@ -37,6 +37,8 @@ spec:
                 secretKeyRef:
                   name: minio-auth
                   key: MINIO_ROOT_PASSWORD
+            - name: MINIO_BROWSER_REDIRECT_URL
+              value: "https://s3.ininicho.com"
           volumeMounts:
             - name: data
               mountPath: /data
