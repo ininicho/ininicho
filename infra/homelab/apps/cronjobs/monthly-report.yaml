@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: monthly-report
+  namespace: command-center
+spec:
+  schedule: "0 14 1 * *"  # 1st of every month at 9am EST
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: report
+              image: curlimages/curl:latest
+              env:
+                - name: COMMAND_CENTER_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: command-center-auth
+                      key: COMMAND_CENTER_TOKEN
+              command:
+                - sh
+                - -c
+                - |
+                  LAST_MONTH=$(date -d "last month" +%Y-%m 2>/dev/null || date -v-1m +%Y-%m)
+                  curl -s -X POST \
+                    -H "Authorization: Bearer $COMMAND_CENTER_TOKEN" \
+                    -H "Content-Type: application/json" \
+                    -d "{\"command\": \"report\", \"month\": \"$LAST_MONTH\"}" \
+                    http://command-center.command-center.svc.cluster.local:5000/run
