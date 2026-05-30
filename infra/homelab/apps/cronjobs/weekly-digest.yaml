@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: weekly-digest
+  namespace: command-center
+spec:
+  schedule: "0 14 * * 1"  # Every Monday at 9am EST
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: digest
+              image: curlimages/curl:latest
+              env:
+                - name: COMMAND_CENTER_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: command-center-auth
+                      key: COMMAND_CENTER_TOKEN
+              command:
+                - sh
+                - -c
+                - |
+                  curl -s -X POST \
+                    -H "Authorization: Bearer $COMMAND_CENTER_TOKEN" \
+                    -H "Content-Type: application/json" \
+                    -d '{"command": "digest"}' \
+                    http://command-center.command-center.svc.cluster.local:5000/run

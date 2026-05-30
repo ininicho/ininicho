@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: command-center
+  namespace: command-center
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: command-center
+  template:
+    metadata:
+      labels:
+        app: command-center
+    spec:
+      initContainers:
+        - name: migrate
+          image: ghcr.io/ininicho/command-center:latest
+          command: ["alembic", "upgrade", "head"]
+          workingDir: /app
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: command-center-auth
+                  key: DATABASE_URL
+      containers:
+        - name: command-center
+          image: ghcr.io/ininicho/command-center:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: command-center-auth
+                  key: DATABASE_URL
+            - name: COMMAND_CENTER_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: command-center-auth
+                  key: COMMAND_CENTER_TOKEN
+            - name: NTFY_PUBLISH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: command-center-auth
+                  key: NTFY_PUBLISH_TOKEN
+            - name: MINIO_ENDPOINT
+              value: "minio.minio.svc.cluster.local:9000"
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: command-center-auth
+                  key: MINIO_ACCESS_KEY
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: command-center-auth
+                  key: MINIO_SECRET_KEY
+            - name: NTFY_URL
+              value: "http://ntfy.ntfy.svc.cluster.local"
+            - name: NTFY_TOPIC
+              value: "alerts"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"

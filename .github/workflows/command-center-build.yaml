@@ -1,14 +1,14 @@
-name: Build command-runner
+name: Build command-center
 
 on:
   push:
     branches:
       - main
     paths:
-      - "command-runner/**"
+      - "command-center/**"
   pull_request:
     paths:
-      - "command-runner/**"
+      - "command-center/**"
 
 jobs:
   build:
@@ -35,9 +35,9 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: command-runner/
+          context: command-center/
           platforms: linux/arm64
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: |
-            ghcr.io/ininicho/command-runner:latest
-            ghcr.io/ininicho/command-runner:${{ github.sha }}
+            ghcr.io/ininicho/command-center:latest
+            ghcr.io/ininicho/command-center:${{ github.sha }}

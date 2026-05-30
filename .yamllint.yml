@@ -6,3 +6,4 @@ rules:
     allowed-values: ["true", "false"]
   comments:
     min-spaces-from-content: 1
+  document-start: disable  # k8s manifests mix single and multi-doc files

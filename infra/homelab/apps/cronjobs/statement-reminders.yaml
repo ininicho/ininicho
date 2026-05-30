@@ -1,0 +1,164 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: reminder-amex
+  namespace: command-center
+spec:
+  schedule: "0 14 13 * *"  # 13th monthly — 3 days after Amex closes on 10th
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: notify
+              image: curlimages/curl:latest
+              env:
+                - name: NTFY_URL
+                  value: "http://ntfy.ntfy.svc.cluster.local"
+                - name: NTFY_PUBLISH_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: command-center-auth
+                      key: NTFY_PUBLISH_TOKEN
+              command:
+                - sh
+                - -c
+                - |
+                  curl -s \
+                    -H "Authorization: Bearer $NTFY_PUBLISH_TOKEN" \
+                    -H "Title: 💳 Upload Amex Cobalt statement" \
+                    -d "Amex Cobalt statement closed on the 10th. Please upload your statement to MinIO." \
+                    "$NTFY_URL/alerts"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: reminder-pc
+  namespace: command-center
+spec:
+  schedule: "0 14 13 * *"  # 13th monthly — 3 days after PC Financial closes on 10th
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: notify
+              image: curlimages/curl:latest
+              env:
+                - name: NTFY_URL
+                  value: "http://ntfy.ntfy.svc.cluster.local"
+                - name: NTFY_PUBLISH_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: command-center-auth
+                      key: NTFY_PUBLISH_TOKEN
+              command:
+                - sh
+                - -c
+                - |
+                  curl -s \
+                    -H "Authorization: Bearer $NTFY_PUBLISH_TOKEN" \
+                    -H "Title: 💳 Upload PC Financial statement" \
+                    -d "PC Financial Mastercard statement closed on the 10th. Please upload your statement to MinIO." \
+                    "$NTFY_URL/alerts"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: reminder-cibc
+  namespace: command-center
+spec:
+  schedule: "0 14 16 * *"  # 16th monthly — 3 days after CIBC closes on 13th
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: notify
+              image: curlimages/curl:latest
+              env:
+                - name: NTFY_URL
+                  value: "http://ntfy.ntfy.svc.cluster.local"
+                - name: NTFY_PUBLISH_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: command-center-auth
+                      key: NTFY_PUBLISH_TOKEN
+              command:
+                - sh
+                - -c
+                - |
+                  curl -s \
+                    -H "Authorization: Bearer $NTFY_PUBLISH_TOKEN" \
+                    -H "Title: 💳 Upload CIBC Visa statement" \
+                    -d "CIBC Visa statement closed on the 13th. Please upload your statement to MinIO." \
+                    "$NTFY_URL/alerts"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: reminder-wealthsimple
+  namespace: command-center
+spec:
+  schedule: "0 14 18 * *"  # 18th monthly — 3 days after Wealthsimple closes on 15th
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: notify
+              image: curlimages/curl:latest
+              env:
+                - name: NTFY_URL
+                  value: "http://ntfy.ntfy.svc.cluster.local"
+                - name: NTFY_PUBLISH_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: command-center-auth
+                      key: NTFY_PUBLISH_TOKEN
+              command:
+                - sh
+                - -c
+                - |
+                  curl -s \
+                    -H "Authorization: Bearer $NTFY_PUBLISH_TOKEN" \
+                    -H "Title: 💳 Upload Wealthsimple Visa statement" \
+                    -d "Wealthsimple Visa statement closed on the 15th. Please upload your statement to MinIO." \
+                    "$NTFY_URL/alerts"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: reminder-rogers
+  namespace: command-center
+spec:
+  schedule: "0 14 24 * *"  # 24th monthly — 3 days after Rogers closes on 21st
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: notify
+              image: curlimages/curl:latest
+              env:
+                - name: NTFY_URL
+                  value: "http://ntfy.ntfy.svc.cluster.local"
+                - name: NTFY_PUBLISH_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: command-center-auth
+                      key: NTFY_PUBLISH_TOKEN
+              command:
+                - sh
+                - -c
+                - |
+                  curl -s \
+                    -H "Authorization: Bearer $NTFY_PUBLISH_TOKEN" \
+                    -H "Title: 💳 Upload Rogers Mastercard statement" \
+                    -d "Rogers Mastercard statement closed on the 21st. Please upload your statement to MinIO." \
+                    "$NTFY_URL/alerts"
