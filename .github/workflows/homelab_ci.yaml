@@ -18,7 +18,10 @@ jobs:
         run: pip install yamllint
 
       - name: Lint YAML
-        run: yamllint infra/homelab/apps/ infra/homelab/argocd/ infra/homelab/infrastructure/
+        run: yamllint infra/homelab/apps/ infra/homelab/argocd/ \
+              infra/homelab/infrastructure/storage/ \
+              infra/homelab/infrastructure/sealed-secrets/ \
+              infra/homelab/infrastructure/kustomization.yaml
 
       - name: Create stub kubeconfig for client-side dry-run
         run: |
