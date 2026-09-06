@@ -14,7 +14,5 @@ resources:
   - ./ntfy-app.yaml
 
   - ./postgres-app.yaml
+  - ./redis-app.yaml
   - ./minio-app.yaml
-
-  - ./command-center-app.yaml
-  - ./cronjobs-app.yaml
