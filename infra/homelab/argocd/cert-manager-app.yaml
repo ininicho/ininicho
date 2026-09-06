@@ -14,7 +14,14 @@ spec:
       helm:
         releaseName: cert-manager
         valueFiles:
-          - $values/infra/homelab/apps/cert-manager/values.yaml
+          - $values/infra/homelab/apps/cert-manager/cert-manager-values.yaml
+    - repoURL: quay.io/jetstack/charts
+      chart: trust-manager
+      targetRevision: v1.21.1
+      helm:
+        releaseName: trust-manager
+        valueFiles:
+          - $values/infra/homelab/apps/cert-manager/trust-manager-values.yaml
     - repoURL: https://github.com/ininicho/ininicho.git
       targetRevision: main
       ref: values
