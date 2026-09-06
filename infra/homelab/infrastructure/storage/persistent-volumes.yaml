@@ -129,3 +129,26 @@ spec:
               operator: In
               values:
                 - heimdall
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis-pv
+spec:
+  capacity:
+    storage: 256Mi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: seagate-local
+  local:
+    path: /mnt/seagate/k3s/redis
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - heimdall
