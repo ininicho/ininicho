@@ -137,7 +137,7 @@ metadata:
   name: redis-pv
 spec:
   capacity:
-    storage: 256Mi
+    storage: 512Mi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
