@@ -5,6 +5,4 @@ metadata:
   namespace: postgres
 data:
   init.sql: |
-    CREATE DATABASE nocodb;
-    CREATE DATABASE metabase;
-    CREATE DATABASE ininicho;
+    CREATE DATABASE platform_expenses;
