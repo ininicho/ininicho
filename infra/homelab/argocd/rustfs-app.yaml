@@ -1,10 +1,10 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: rustfs
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  finalizers: [resources-finalizer.argocd.argoproj.io]
 spec:
   project: default
   sources:
@@ -12,11 +12,13 @@ spec:
       chart: rustfs
       targetRevision: 1.0.0
       helm:
-        valueFiles:
-          - $values/infra/homelab/apps/rustfs/values.yaml
+        valueFiles: [$values/infra/homelab/apps/rustfs/values.yaml]
     - repoURL: https://github.com/ininicho/ininicho.git
       targetRevision: main
       ref: values
+    - repoURL: https://github.com/ininicho/ininicho.git
+      targetRevision: main
+      path: infra/homelab/apps/rustfs
   destination:
     server: https://kubernetes.default.svc
     namespace: rustfs
@@ -24,5 +26,4 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+    syncOptions: [CreateNamespace=true]
