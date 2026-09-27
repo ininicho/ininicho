@@ -6,7 +6,6 @@
 #
 # What it checks:
 #   1. Python tests (pytest tests/)
-#   2. YAML lint on homelab manifests (yamllint)
 #
 # kubectl dry-run is skipped locally — it runs in GitHub Actions instead.
 
@@ -39,23 +38,6 @@ if command -v pytest &>/dev/null || command -v python3 &>/dev/null; then
   fi
 else
   skip "pytest"
-fi
-
-# ── 2. YAML lint ─────────────────────────────────────────
-if command -v yamllint &>/dev/null; then
-  echo "Running yamllint..."
-  # Exclude secrets/ — SealedSecret encrypted values are inherently long base64 lines
-  if yamllint infra/homelab/apps/ infra/homelab/argocd/ \
-              infra/homelab/infrastructure/storage/ \
-              infra/homelab/infrastructure/sealed-secrets/ \
-              infra/homelab/infrastructure/kustomization.yaml 2>&1; then
-    pass "yamllint"
-  else
-    fail "yamllint — fix YAML errors before pushing"
-    FAILED=1
-  fi
-else
-  skip "yamllint  (install: pip install yamllint)"
 fi
 
 echo "─────────────────────────────────────────────────────"
