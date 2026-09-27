@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -5,8 +6,7 @@ metadata:
 spec:
   capacity:
     storage: 5Gi
-  accessModes:
-    - ReadWriteOnce
+  accessModes: [ReadWriteOnce]
   persistentVolumeReclaimPolicy: Retain
   storageClassName: seagate-local
   local:
@@ -17,52 +17,7 @@ spec:
         - matchExpressions:
             - key: kubernetes.io/hostname
               operator: In
-              values:
-                - heimdall
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: nocodb-pv
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: seagate-local
-  local:
-    path: /mnt/seagate/k3s/nocodb
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
-              values:
-                - heimdall
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: metabase-pv
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: seagate-local
-  local:
-    path: /mnt/seagate/k3s/metabase
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
-              values:
-                - heimdall
+              values: [heimdall]
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -71,8 +26,7 @@ metadata:
 spec:
   capacity:
     storage: 2Gi
-  accessModes:
-    - ReadWriteOnce
+  accessModes: [ReadWriteOnce]
   persistentVolumeReclaimPolicy: Retain
   storageClassName: seagate-local
   local:
@@ -83,8 +37,7 @@ spec:
         - matchExpressions:
             - key: kubernetes.io/hostname
               operator: In
-              values:
-                - heimdall
+              values: [heimdall]
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -93,8 +46,7 @@ metadata:
 spec:
   capacity:
     storage: 5Gi
-  accessModes:
-    - ReadWriteOnce
+  accessModes: [ReadWriteOnce]
   persistentVolumeReclaimPolicy: Retain
   storageClassName: seagate-local
   local:
@@ -105,9 +57,7 @@ spec:
         - matchExpressions:
             - key: kubernetes.io/hostname
               operator: In
-              values:
-                - heimdall
-
+              values: [heimdall]
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -116,8 +66,7 @@ metadata:
 spec:
   capacity:
     storage: 512Mi
-  accessModes:
-    - ReadWriteOnce
+  accessModes: [ReadWriteOnce]
   persistentVolumeReclaimPolicy: Retain
   storageClassName: seagate-local
   local:
@@ -128,5 +77,4 @@ spec:
         - matchExpressions:
             - key: kubernetes.io/hostname
               operator: In
-              values:
-                - heimdall
+              values: [heimdall]
