@@ -1,0 +1,22 @@
+---
+# Override for charts.rustfs-style multi-source ArgoCD app — merged onto
+# https://github.com/ininicho/platform/blob/main/charts/expenses-service/values.yaml
+configMap:
+  # Cross-namespace: expenses-service runs in "platform", redis in "redis".
+  redisHost: redis.redis.svc.cluster.local
+  # minio is decommissioned; object storage moved to rustfs (S3 API port 9000).
+  minioEndpoint: rustfs-svc.rustfs.svc.cluster.local:9000
+api:
+  image:
+    repository: ghcr.io/ininicho/expenses-api
+    tag: 0.1.3
+  replicas: 1
+worker:
+  image:
+    repository: ghcr.io/ininicho/expenses-worker
+    tag: 0.1.3
+  replicas: 1
+migrate:
+  image:
+    repository: ghcr.io/ininicho/migrator
+    tag: latest

@@ -1,0 +1,27 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: expenses-service
+  namespace: argocd
+  finalizers: [resources-finalizer.argocd.argoproj.io]
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/ininicho/platform.git
+      path: charts/expenses-service
+      targetRevision: main
+      helm:
+        valueFiles:
+          - $values/infra/homelab/apps/platform/expenses-service/values.yaml
+    - repoURL: https://github.com/ininicho/ininicho.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: platform
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions: [CreateNamespace=true]

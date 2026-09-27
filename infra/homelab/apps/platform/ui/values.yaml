@@ -1,0 +1,9 @@
+---
+# Override for multi-source ArgoCD app — merged onto
+# https://github.com/ininicho/platform/blob/main/charts/ui/values.yaml
+image:
+  repository: ghcr.io/ininicho/ui
+  tag: 0.1.1
+ingress:
+  className: traefik
+  host: platform.ininicho.com
