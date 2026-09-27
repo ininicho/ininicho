@@ -78,3 +78,43 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values: [heimdall]
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rustfs-data-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes: [ReadWriteOnce]
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: seagate-local
+  local:
+    path: /mnt/seagate/k3s/rustfs/data
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values: [heimdall]
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rustfs-logs-pv
+spec:
+  capacity:
+    storage: 256Mi
+  accessModes: [ReadWriteOnce]
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: seagate-local
+  local:
+    path: /mnt/seagate/k3s/rustfs/logs
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values: [heimdall]
