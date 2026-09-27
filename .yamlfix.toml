@@ -1,8 +1,0 @@
-# Mirror .yamllint.yml so yamlfix's autofixes don't fight yamllint's rules.
-# NOTE: yamlfix's generic .toml parser reads this file's keys flat (no [yamlfix]
-# table wrapper) -- that wrapper only applies inside pyproject.toml's [tool.yamlfix].
-explicit_start = false                 # yamllint: document-start disabled
-line_length = 120                      # yamllint: line-length max 120
-comments_min_spaces_from_content = 1   # yamllint: comments.min-spaces-from-content
-sequence_style = "keep_style"          # preserve existing block-style lists, avoid reformatting the whole repo
-indent_sequence = 2                    # match existing 2-space list indent in these manifests
