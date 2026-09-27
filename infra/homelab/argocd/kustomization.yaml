@@ -1,21 +1,18 @@
+---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./argocd-config-app.yaml
   - ./infrastructure-app.yaml
-
   - ./istio-base-app.yaml
   - ./istiod-app.yaml
   - ./istio-cni-app.yaml
   - ./ztunnel-app.yaml
-
   - ./grafana-app.yaml
   - ./prometheus-app.yaml
   - ./ntfy-app.yaml
-
   - ./postgres-app.yaml
   - ./redis-app.yaml
-  # - ./minio-app.yaml
   - ./rustfs-app.yaml
-
   - ./cert-manager-app.yaml
+  - ./platform-app.yaml

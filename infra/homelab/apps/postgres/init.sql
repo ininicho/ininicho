@@ -1,0 +1,6 @@
+CREATE DATABASE platform IF NOT EXISTS;
+
+CREATE ROLE "expense-svc" WITH LOGIN ENCRYPTED PASSWORD '<password>';
+
+GRANT CONNECT, TEMP ON DATABASE platform TO "expense-svc";
+GRANT USAGE, CREATE ON SCHEMA public TO "expense-svc";
