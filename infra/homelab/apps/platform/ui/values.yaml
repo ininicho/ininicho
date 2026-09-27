@@ -7,3 +7,5 @@ image:
 ingress:
   className: traefik
   host: platform.ininicho.com
+imagePullSecrets:
+  - name: ghcr-pull-secret

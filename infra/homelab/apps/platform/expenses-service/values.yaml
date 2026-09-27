@@ -20,3 +20,5 @@ migrate:
   image:
     repository: ghcr.io/ininicho/migrator
     tag: latest
+imagePullSecrets:
+  - name: ghcr-pull-secret
