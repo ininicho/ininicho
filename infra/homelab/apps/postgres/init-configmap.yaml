@@ -5,4 +5,4 @@ metadata:
   namespace: postgres
 data:
   init.sql: |
-    CREATE DATABASE platform_expenses;
+    CREATE DATABASE platform;

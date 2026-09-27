@@ -15,6 +15,7 @@ resources:
 
   - ./postgres-app.yaml
   - ./redis-app.yaml
-  - ./minio-app.yaml
+  # - ./minio-app.yaml
+  - ./rustfs-app.yaml
 
   - ./cert-manager-app.yaml
